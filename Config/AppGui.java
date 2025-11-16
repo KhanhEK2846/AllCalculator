@@ -17,6 +17,7 @@ public class AppGui extends JFrame {
     private static final int WIDTH = 750;
 
     private SupportCalculatorROM supportCalculatorROM;
+    private JComboBox<SupportCalculatorEnum> CalculatorsChoice;
 
     public AppGui(){
         super("All Calculators");
@@ -36,7 +37,7 @@ public class AppGui extends JFrame {
         labelInputCal.setBounds(10,50 , 325,40 );
         add(labelInputCal);
 
-        JComboBox<SupportCalculatorEnum> CalculatorsChoice = new JComboBox<>(SupportCalculatorEnum.values());
+        CalculatorsChoice = new JComboBox<>(SupportCalculatorEnum.values());
         CalculatorsChoice.setBounds(340, 50, 325, 40);
         add(CalculatorsChoice);
 
@@ -57,6 +58,7 @@ public class AppGui extends JFrame {
     private void InitCalculators(){
         supportCalculatorROM = new SupportCalculatorROM();
         supportCalculatorROM.InitCalculators();
+        CalculatorsChoice.setSelectedItem(SupportCalculatorEnum.CRC_Calculator);
     }
 
 }

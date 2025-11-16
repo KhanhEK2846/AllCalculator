@@ -8,7 +8,8 @@ public enum ErrorEvent {
     GeneralFailure("General Failure",1),
 
     EmptyInput("Input must not be empty",2),
-    InvalidRangeInput("Input is out of range",2),
+    InvalidRangeInput("Input is invalid range",2),
+    ConfigureInvalid("Configuration is invalid",2),
 
 
 
