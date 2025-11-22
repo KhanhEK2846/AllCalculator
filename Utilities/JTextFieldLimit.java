@@ -32,7 +32,7 @@ public class JTextFieldLimit extends JTextField {
         });
     }
 
-    JTextFieldLimit(String regex) {
+    public JTextFieldLimit(String regex) {
         ((AbstractDocument)getDocument()).setDocumentFilter(new DocumentFilter(){
             @Override
             public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {

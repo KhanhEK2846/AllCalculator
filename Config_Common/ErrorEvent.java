@@ -6,6 +6,8 @@ public enum ErrorEvent {
 
     /*-----------------------------Failure--------------------------- */
     GeneralFailure("General Failure",1),
+    UnderMaintainance("Calculator is under maintenance",1),
+    UnsupportedCalculator("Calculator is not supported",1),
 
     EmptyInput("Input must not be empty",2),
     InvalidRangeInput("Input is invalid range",2),

@@ -4,8 +4,11 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import Config_Common.Calculator;
+import Config_Common.ErrorEvent;
 import Config_Common.SupportCalculatorEnum;
 import Config_Common.SupportCalculatorROM;
+import Utilities.PopUp;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -49,7 +52,16 @@ public class AppGui extends JFrame {
         btnOpenCalculator.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                supportCalculatorROM.GetCalculator((SupportCalculatorEnum) CalculatorsChoice.getSelectedItem()).setVisible(true);
+                try{
+                    Calculator calc = supportCalculatorROM.GetCalculator((SupportCalculatorEnum) CalculatorsChoice.getSelectedItem());
+                    if(!calc.isMaintained){
+                        calc.setVisible(true);
+                    }else{
+                        new PopUp(ErrorEvent.UnderMaintainance);
+                    }
+                }catch(Exception e2){
+                    new PopUp(ErrorEvent.UnsupportedCalculator);
+                }
             }
         });
 
@@ -58,7 +70,8 @@ public class AppGui extends JFrame {
     private void InitCalculators(){
         supportCalculatorROM = new SupportCalculatorROM();
         supportCalculatorROM.InitCalculators();
-        CalculatorsChoice.setSelectedItem(SupportCalculatorEnum.CRC_Calculator);
+        if(SystemMode.DEBUG)
+            CalculatorsChoice.setSelectedItem(SupportCalculatorEnum.MultiDivShift_Calculator);
     }
 
 }

@@ -16,9 +16,10 @@ public class SupportCalculatorROM{
         calculators[SupportCalculatorEnum.Basic_Calculator.ordinal()] = new BasicCalculator();
         calculators[SupportCalculatorEnum.AES_CMAC_Calculator.ordinal()] = new AES_CMAC_GUI();
         calculators[SupportCalculatorEnum.CRC_Calculator.ordinal()] = new CRC_GUI();
+
     }
 
-    public Calculator GetCalculator(SupportCalculatorEnum calculatorEnum){
+    public Calculator GetCalculator(SupportCalculatorEnum calculatorEnum) throws Exception{
         return calculators[calculatorEnum.ordinal()];
     }
 }

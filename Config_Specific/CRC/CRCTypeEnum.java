@@ -3,6 +3,7 @@ package Config_Specific.CRC;
 public enum CRCTypeEnum {
     /*----------------------CRC8------------------- */
     CRC8_AUTOSAR(0x2F,0xFF,false,false,0xFF,8),
+    CRC8_BLUETOOTH(0xA7,0x00,true,true,0x00,8),
 
 
     /*----------------------CRC16------------------- */

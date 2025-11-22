@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 
 public class Calculator extends JFrame{
 
+    public boolean isMaintained = false;
+
     public Calculator(String title){
         super(title);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

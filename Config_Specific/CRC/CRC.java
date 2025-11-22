@@ -44,14 +44,29 @@ public class CRC {
     private byte[] PraiseHexStringToByteArray(String hexString){
         byte[] byteArray = new byte[hexString.length() / 2];
         for (int i = 0; i < byteArray.length; i++) {
-            byteArray[i] = (byte) Integer.parseInt(hexString.substring(2 * i, 2 * i + 2), 16);
+            byteArray[i] = (byte) Integer.parseInt(hexString.substring(2 * i, 2 * i + +2), 16);
         }
         return byteArray;
     }
 
     private String CRCCalculator(byte[] data, CRCTypeEnum crcType){
         String returnValue = "";
-        long crcResult = crc(data, crcType.polynomial, crcType.initialValue,crcType.RefIn, crcType.RefOut, crcType.xorOut, crcType.CRCwidth);
+        long crcResult = 0;
+
+        switch(crcType.CRCwidth){
+            case 8:
+                crcResult = crc8(data, crcType);
+                break;
+            case 16:
+                //TODO CRC16
+                break;
+            case 32:
+                //TODO CRC32
+                break;
+            default:
+                new PopUp(ErrorEvent.ConfigureInvalid);
+                return "";
+        }
 
         returnValue = crc2HexString(crcResult, crcType.CRCwidth);
 
@@ -82,47 +97,39 @@ public class CRC {
         }
     }
 
-    public static long crc(byte[] data,long poly,long init,boolean refin,boolean refout,long xorout,int width) {
-        long crc = init;
-        long mask = (width == 32) ? 0xFFFFFFFFL : ((1L << width) - 1);
-        long topbit = 1L << (width - 1);
+    private static long crc8(byte[] data,CRCTypeEnum crcType){
+        int crc = (int)crcType.initialValue & 0xFF;
+        int poly = (int)crcType.polynomial & 0xFF;
 
-        // Automatically reflect polynomial for LSB-first
-        if (refin) poly = reflectBits(poly, width);
+        //Reflect polynomial for LSB-first
+        if (!crcType.RefIn) poly = (int) reflectBits(poly, 8);
 
-        for (byte b : data) {
+        for (byte b : data){
             int cur = b & 0xFF;
-            if (refin) cur = (int) reflectBits(cur, 8);
+            //if (crcType.RefIn) cur = (int) reflectBits(cur, 8);
+            crc ^= cur;
 
-            if (!refin) { // MSB-first
-                crc ^= ((long) cur << (width - 8));
-                for (int i = 0; i < 8; i++) {
-                    if ((crc & topbit) != 0) {
-                        crc = (crc << 1) ^ poly;
-                    } else {
-                        crc <<= 1;
-                    }
-                    crc &= mask;
-                }
-            } else { // LSB-first
-                crc ^= cur;
-                for (int i = 0; i < 8; i++) {
-                    if ((crc & 1) != 0) {
+            for (int i = 0; i < 8; i++){
+                if ((crc & (!crcType.RefIn ? 0x01 : 0x80)) != 0) {
+                    if (!crcType.RefIn)
                         crc = (crc >> 1) ^ poly;
-                    } else {
+                    else
+                        crc = ((crc << 1) ^ poly) & 0xFF;
+                } else {
+                    if (!crcType.RefIn)
                         crc >>= 1;
-                    }
-                    crc &= mask;
+                    else
+                        crc = (crc << 1) & 0xFF;
                 }
             }
         }
 
-        if (refout) crc = reflectBits(crc, width) & mask;
+        //if (crcType.RefOut) crc = (int) reflectBits(crc, 8);
 
-        crc ^= xorout;
-        return crc & mask;
+        crc ^= (int) crcType.xorOut & 0xFF;
 
-
+        return crc & 0xFF;
     }
+
 }
 
