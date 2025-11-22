@@ -29,7 +29,6 @@ public class CRC_GUI extends Calculator {
     }
 
     void addGuiComponents() {
-        Font myFont = new Font("Dialog",Font.BOLD,30);
         JLabel InputDataLabel = new JLabel("Data (Hex)");
         InputDataLabel.setFont(myFont);
         InputDataLabel.setBounds(5,25,200,50);

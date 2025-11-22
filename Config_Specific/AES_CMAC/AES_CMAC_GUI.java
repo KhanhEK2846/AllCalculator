@@ -27,7 +27,6 @@ public class AES_CMAC_GUI extends Calculator {
     }
 
     private void addGuiComponents() {
-        Font myFont = new Font("Dialog",Font.BOLD,30);
         JLabel InputSeedLabel = new JLabel("Seed (Hex)");
         InputSeedLabel.setFont(myFont);
         InputSeedLabel.setBounds(5,25,200,50);
