@@ -19,6 +19,7 @@ public class SupportCalculatorROM{
         calculators[SupportCalculatorEnum.CRC_Calculator.ordinal()] = new CRC_GUI();
         calculators[SupportCalculatorEnum.MultiDivShift_Calculator.ordinal()] = null;
         calculators[SupportCalculatorEnum.Converter_Calculator.ordinal()] = new Converter_GUI();
+        calculators[SupportCalculatorEnum.Timestamp_Calculator.ordinal()] = null;
 
     }
 

@@ -5,5 +5,6 @@ public enum SupportCalculatorEnum {
     AES_CMAC_Calculator,
     CRC_Calculator,
     MultiDivShift_Calculator,
-    Converter_Calculator
+    Converter_Calculator,
+    Timestamp_Calculator
 }

@@ -28,4 +28,19 @@ public class FunctionConvert {
         return input * 3600 / 1000;
     }
 
+    public static double CtoF(Double input){
+        return (input * 9/5) + 32;
+    }
+
+    public static double FtoC(Double input){
+        return (input - 32) * 5/9;
+    }
+
+    public static double CtoK(Double input){
+        return input + 273.15;
+    }
+
+    public static double KtoC(Double input){
+        return input - 273.15;
+    }
 }
