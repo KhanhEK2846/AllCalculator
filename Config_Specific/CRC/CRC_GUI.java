@@ -20,7 +20,7 @@ public class CRC_GUI extends Calculator {
 
     public CRC_GUI() {
         super("CRC Calculator");
-        isMaintained = true;
+        //isMaintained = true;
         setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
         setLayout(null);

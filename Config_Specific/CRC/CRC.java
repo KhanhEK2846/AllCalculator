@@ -55,13 +55,10 @@ public class CRC {
 
         switch(crcType.CRCwidth){
             case 8:
-                crcResult = crc8(data, crcType);
-                break;
             case 16:
-                //TODO CRC16
-                break;
             case 32:
-                //TODO CRC32
+            case 64:
+                crcResult = crc(data, crcType);
                 break;
             default:
                 new PopUp(ErrorEvent.ConfigureInvalid);
@@ -97,39 +94,43 @@ public class CRC {
         }
     }
 
-    private static long crc8(byte[] data,CRCTypeEnum crcType){
-        int crc = (int)crcType.initialValue & 0xFF;
-        int poly = (int)crcType.polynomial & 0xFF;
+    private static long crc(byte[] data,CRCTypeEnum crcType){
+            long crc = crcType.initialValue;
+            long topBit = 1L << (crcType.CRCwidth - 1);
+            long mask = (crcType.CRCwidth == 64) ? ~0L : ((1L << crcType.CRCwidth) - 1);
 
-        //Reflect polynomial for LSB-first
-        if (!crcType.RefIn) poly = (int) reflectBits(poly, 8);
+            // If reflected mode, reflect the polynomial
+            long polyRef = crcType.RefIn ? reflectBits(crcType.polynomial, crcType.CRCwidth) : crcType.polynomial;
 
-        for (byte b : data){
-            int cur = b & 0xFF;
-            //if (crcType.RefIn) cur = (int) reflectBits(cur, 8);
-            crc ^= cur;
+            for (byte b : data) {
+                int cur = b & 0xFF;
 
-            for (int i = 0; i < 8; i++){
-                if ((crc & (!crcType.RefIn ? 0x01 : 0x80)) != 0) {
-                    if (!crcType.RefIn)
-                        crc = (crc >> 1) ^ poly;
-                    else
-                        crc = ((crc << 1) ^ poly) & 0xFF;
+                if (crcType.RefIn) {
+                    cur = (int) reflectBits(cur, 8);
+                    crc ^= (cur & 0xFF);
+                    for (int i = 0; i < 8; i++) {
+                        if ((crc & 1) != 0)
+                            crc = (crc >>> 1) ^ polyRef;
+                        else
+                            crc >>>= 1;
+                    }
                 } else {
-                    if (!crcType.RefIn)
-                        crc >>= 1;
-                    else
-                        crc = (crc << 1) & 0xFF;
+                    crc ^= (cur << (crcType.CRCwidth - 8));
+                    for (int i = 0; i < 8; i++) {
+                        if ((crc & topBit) != 0)
+                            crc = ((crc << 1) ^ polyRef) & mask;
+                        else
+                            crc = (crc << 1) & mask;
+                    }
                 }
             }
+
+            if (crcType.RefOut)
+                crc = reflectBits(crc, crcType.CRCwidth);
+
+            crc ^= crcType.xorOut;
+
+            return crc & mask;
         }
-
-        //if (crcType.RefOut) crc = (int) reflectBits(crc, 8);
-
-        crc ^= (int) crcType.xorOut & 0xFF;
-
-        return crc & 0xFF;
-    }
-
 }
 
