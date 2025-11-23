@@ -50,7 +50,9 @@ public class SupportCalculatorROM{
     }
 
     private boolean ValidateConfiguration(){
-        if(calculators.length != SuppressedCalculator.length)
+
+        if((SuppressedCalculator.length != SupportCalculatorEnum.values().length) ||
+            (calculators.length != SuppressedCalculator.length))
             return false;
 
 
