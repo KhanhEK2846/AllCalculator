@@ -7,5 +7,9 @@ public enum SupportCalculatorEnum {
     MultiDivShift_Calculator,
     Converter_Calculator,
     Timestamp_Calculator,
-    DateBetween_Calculator
+    DateBetween_Calculator,
+    Loan_Calculator,
+    Interest_Calculator,
+    BMI_Calculator,
+    BMR_Calculator
 }

@@ -23,6 +23,10 @@ public class SupportCalculatorROM{
         calculators[SupportCalculatorEnum.Converter_Calculator.ordinal()] = new Converter_GUI();
         calculators[SupportCalculatorEnum.Timestamp_Calculator.ordinal()] = new Timestamp_GUI();
         calculators[SupportCalculatorEnum.DateBetween_Calculator.ordinal()] = new DateBetween_GUI();
+        calculators[SupportCalculatorEnum.Loan_Calculator.ordinal()] = null;
+        calculators[SupportCalculatorEnum.Interest_Calculator.ordinal()] = null;
+        calculators[SupportCalculatorEnum.BMI_Calculator.ordinal()] = null;
+        calculators[SupportCalculatorEnum.BMR_Calculator.ordinal()] = null;
 
     }
 
