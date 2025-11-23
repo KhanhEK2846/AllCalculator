@@ -71,7 +71,7 @@ public class AppGui extends JFrame {
         supportCalculatorROM = new SupportCalculatorROM();
         supportCalculatorROM.InitCalculators();
         if(SystemMode.DEBUG)
-            CalculatorsChoice.setSelectedItem(SupportCalculatorEnum.Converter_Calculator);
+            CalculatorsChoice.setSelectedItem(SupportCalculatorEnum.Timestamp_Calculator);
     }
 
 }

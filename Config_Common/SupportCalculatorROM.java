@@ -4,6 +4,7 @@ import Config_Specific.AES_CMAC.AES_CMAC_GUI;
 import Config_Specific.Basic_Calculator.BasicCalculator;
 import Config_Specific.CRC.CRC_GUI;
 import Config_Specific.Converter.Converter_GUI;
+import Config_Specific.Timestamp.Timestamp_GUI;
 
 public class SupportCalculatorROM{
 
@@ -19,7 +20,7 @@ public class SupportCalculatorROM{
         calculators[SupportCalculatorEnum.CRC_Calculator.ordinal()] = new CRC_GUI();
         calculators[SupportCalculatorEnum.MultiDivShift_Calculator.ordinal()] = null;
         calculators[SupportCalculatorEnum.Converter_Calculator.ordinal()] = new Converter_GUI();
-        calculators[SupportCalculatorEnum.Timestamp_Calculator.ordinal()] = null;
+        calculators[SupportCalculatorEnum.Timestamp_Calculator.ordinal()] = new Timestamp_GUI();
 
     }
 

@@ -4,6 +4,7 @@ public enum ErrorEvent {
     /*-----------------------------Success--------------------------- */
     BuildSuccess("Build Success",0),
     PreConditionPassed("Pre-condition passed",0),
+    TaskSuccess("Task Success",0),
 
     /*-----------------------------Failure--------------------------- */
     GeneralFailure("General Failure",1),
@@ -13,8 +14,11 @@ public enum ErrorEvent {
     EmptyInput("Input must not be empty",2),
     InvalidRangeInput("Input is invalid range",2),
     ConfigureInvalid("Configuration is invalid",2),
-    InvalidInputFormat("Input format is invalid",2)
+    InvalidInputFormat("Input format is invalid",2),
 
+
+    /*-----------------------------Other--------------------------- */
+    InitialState("Initial State",0),
 
 
 
