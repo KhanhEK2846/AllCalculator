@@ -22,15 +22,15 @@ public class AppGui extends JFrame {
     private SupportCalculatorROM supportCalculatorROM;
     private JComboBox<SupportCalculatorEnum> CalculatorsChoice;
 
-    public AppGui(){
+    public AppGui() throws Exception{
         super("All Calculators");
+        InitCalculators();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
         setLayout(null);
         setResizable(false);
         addGuiComponents();
-        InitCalculators();
     }
 
     private void addGuiComponents(){
@@ -53,23 +53,31 @@ public class AppGui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e){
                 try{
-                    Calculator calc = supportCalculatorROM.GetCalculator((SupportCalculatorEnum) CalculatorsChoice.getSelectedItem());
-                    if(!calc.isMaintained){
+                    SupportCalculatorEnum SelectedCalculator = (SupportCalculatorEnum) CalculatorsChoice.getSelectedItem();
+                    Calculator calc = supportCalculatorROM.GetCalculator(SelectedCalculator);
+
+                    if(supportCalculatorROM.IsSuppressed(SelectedCalculator)){
+                        //Check if Calculator is allowed to open
+                        new PopUp(ErrorEvent.UnsupportedCalculator);
+                    }else if(!calc.isMaintained){
                         calc.setVisible(true);
                     }else{
+                        //Calculator is Under-Development
                         new PopUp(ErrorEvent.UnderMaintainance);
                     }
                 }catch(Exception e2){
-                    new PopUp(ErrorEvent.UnsupportedCalculator);
+                    // Calculator is null
+                    new PopUp(ErrorEvent.ConfigureInvalid);
                 }
             }
         });
 
     }
 
-    private void InitCalculators(){
+    private void InitCalculators() throws Exception{
+
         supportCalculatorROM = new SupportCalculatorROM();
-        supportCalculatorROM.InitCalculators();
+
         if(SystemMode.DEBUG)
             CalculatorsChoice.setSelectedItem(SupportCalculatorEnum.Timestamp_Calculator);
     }

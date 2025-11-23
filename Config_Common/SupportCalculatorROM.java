@@ -10,11 +10,30 @@ import Config_Specific.Timestamp.Timestamp_GUI;
 public class SupportCalculatorROM{
 
     private Calculator[] calculators;
+    private static final boolean SuppressedCalculator[] = {
+        false,          // Basic Calculator
+        false,          // AES CMAC
+        false,          // CRC
+        true,           // MultiDivShift
+        false,          // Converted Unit
+        false,          // Timestamp
+        true,           // Date Between
+        true,           // Loan
+        true,           // Interest
+        true,           // BMI
+        true,           // BMR
 
-    public SupportCalculatorROM(){
+    };
+
+    public SupportCalculatorROM() throws Exception{
+        InitCalculators();
+
+        if(!ValidateConfiguration())
+            throw new IllegalArgumentException("");
+
     }
 
-    public void InitCalculators(){
+    private void InitCalculators(){
         calculators = new Calculator[SupportCalculatorEnum.values().length];
         calculators[SupportCalculatorEnum.Basic_Calculator.ordinal()] = new BasicCalculator();
         calculators[SupportCalculatorEnum.AES_CMAC_Calculator.ordinal()] = new AES_CMAC_GUI();
@@ -30,7 +49,19 @@ public class SupportCalculatorROM{
 
     }
 
+    private boolean ValidateConfiguration(){
+        if(calculators.length != SuppressedCalculator.length)
+            return false;
+
+
+        return true;
+    }
+
     public Calculator GetCalculator(SupportCalculatorEnum calculatorEnum) throws Exception{
         return calculators[calculatorEnum.ordinal()];
+    }
+
+    public boolean IsSuppressed(SupportCalculatorEnum calculatorEnum) throws Exception{
+        return SuppressedCalculator[calculatorEnum.ordinal()];
     }
 }

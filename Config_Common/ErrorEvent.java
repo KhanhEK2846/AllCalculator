@@ -6,14 +6,17 @@ public enum ErrorEvent {
     PreConditionPassed("Pre-condition passed",0),
     TaskSuccess("Task Success",0),
 
+    /*-----------------------------System--------------------------- */
+    ConfigureInvalid("Configuration is invalid",1),
+    ConfigureMismatch("Configuration is mismatch",1),
+
     /*-----------------------------Failure--------------------------- */
-    GeneralFailure("General Failure",1),
-    UnderMaintainance("Calculator is under maintenance",1),
-    UnsupportedCalculator("Calculator is not supported",1),
+    GeneralFailure("General Failure",2),
+    UnderMaintainance("Calculator is under maintenance",2),
+    UnsupportedCalculator("Calculator is not supported",2),
 
     EmptyInput("Input must not be empty",2),
     InvalidRangeInput("Input is invalid range",2),
-    ConfigureInvalid("Configuration is invalid",2),
     InvalidInputFormat("Input format is invalid",2),
 
 
