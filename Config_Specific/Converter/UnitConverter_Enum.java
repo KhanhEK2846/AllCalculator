@@ -10,6 +10,8 @@ public enum UnitConverter_Enum {
     /*------------------------------------------Velocity----------------------------------------- */
     KMPH_TO_MPH("km/h","m/s",FunctionConvert::KmphtoMs),
     MPH_TO_KMPH("m/s","km/h",FunctionConvert::MstoKmph),
+    MPH_TO_MS("mph","m/s",FunctionConvert::MphtoMs),
+    MS_TO_MPH("m/s","mph",FunctionConvert::MstoMph),
 
     /*------------------------------------------Temperature----------------------------------------- */
     C_TO_F("Celsius","Fahrenheit", FunctionConvert::CtoF),

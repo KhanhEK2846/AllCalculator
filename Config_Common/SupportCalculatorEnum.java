@@ -6,5 +6,6 @@ public enum SupportCalculatorEnum {
     CRC_Calculator,
     MultiDivShift_Calculator,
     Converter_Calculator,
-    Timestamp_Calculator
+    Timestamp_Calculator,
+    DateBetween_Calculator
 }

@@ -20,6 +20,7 @@ public class FunctionConvert {
         return ErrorEvent.PreConditionPassed;
     }
 
+    /*------------------------------------------Velocity----------------------------------------- */
     public static double KmphtoMs(Double input){
         return input * 1000 / 3600;
     }
@@ -28,6 +29,15 @@ public class FunctionConvert {
         return input * 3600 / 1000;
     }
 
+    public static double MphtoMs(Double input){
+        return input * 0.44704;
+    }
+
+    public static double MstoMph(Double input){
+        return input * 2.2369362921;
+    }
+
+    /*------------------------------------------Temperature----------------------------------------- */
     public static double CtoF(Double input){
         return (input * 9/5) + 32;
     }
