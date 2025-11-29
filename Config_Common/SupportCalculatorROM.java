@@ -10,6 +10,8 @@ import Config_Specific.Timestamp.Timestamp_GUI;
 public class SupportCalculatorROM{
 
     private Calculator[] calculators;
+
+    /*---------------------------List of Calculator is not allow------------------------- */
     private static final boolean SuppressedCalculator[] = {
         false,          // Basic Calculator
         false,          // AES CMAC
@@ -22,6 +24,7 @@ public class SupportCalculatorROM{
         true,           // Interest
         true,           // BMI
         true,           // BMR
+        true,           // Radix
 
     };
 
@@ -35,6 +38,8 @@ public class SupportCalculatorROM{
 
     private void InitCalculators(){
         calculators = new Calculator[SupportCalculatorEnum.values().length];
+
+        /*----------------------------------List of calculator is developed----------------------------- */
         calculators[SupportCalculatorEnum.Basic_Calculator.ordinal()] = new BasicCalculator();
         calculators[SupportCalculatorEnum.AES_CMAC_Calculator.ordinal()] = new AES_CMAC_GUI();
         calculators[SupportCalculatorEnum.CRC_Calculator.ordinal()] = new CRC_GUI();
@@ -46,6 +51,7 @@ public class SupportCalculatorROM{
         calculators[SupportCalculatorEnum.Interest_Calculator.ordinal()] = null;
         calculators[SupportCalculatorEnum.BMI_Calculator.ordinal()] = null;
         calculators[SupportCalculatorEnum.BMR_Calculator.ordinal()] = null;
+        calculators[SupportCalculatorEnum.Radix_Calculator.ordinal()] = null;
 
     }
 

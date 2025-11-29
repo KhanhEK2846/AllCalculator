@@ -11,5 +11,6 @@ public enum SupportCalculatorEnum {
     Loan_Calculator,
     Interest_Calculator,
     BMI_Calculator,
-    BMR_Calculator
+    BMR_Calculator,
+    Radix_Calculator
 }
