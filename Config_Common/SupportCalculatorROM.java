@@ -25,6 +25,8 @@ public class SupportCalculatorROM{
         true,           // BMI
         true,           // BMR
         true,           // Radix
+        true,           // Color
+        true,           // Resistance
 
     };
 
@@ -51,7 +53,8 @@ public class SupportCalculatorROM{
         calculators[SupportCalculatorEnum.Interest_Calculator.ordinal()] = null;
         calculators[SupportCalculatorEnum.BMI_Calculator.ordinal()] = null;
         calculators[SupportCalculatorEnum.BMR_Calculator.ordinal()] = null;
-        calculators[SupportCalculatorEnum.Radix_Calculator.ordinal()] = null;
+        calculators[SupportCalculatorEnum.Color_Combine.ordinal()] = null;
+        calculators[SupportCalculatorEnum.Resistance_Calculator.ordinal()] = null;
 
     }
 

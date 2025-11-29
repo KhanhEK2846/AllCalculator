@@ -12,5 +12,7 @@ public enum SupportCalculatorEnum {
     Interest_Calculator,
     BMI_Calculator,
     BMR_Calculator,
-    Radix_Calculator
+    Radix_Calculator,
+    Color_Combine,
+    Resistance_Calculator
 }
